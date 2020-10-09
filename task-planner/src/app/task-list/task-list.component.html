@@ -1,6 +1,11 @@
 <h2 class="text-center">Список заданий</h2>
 
-<app-statistic></app-statistic>
+<app-statistic
+  [tasksAll]="getTaskListsSize()"
+  [tasksPlanned]="getTasksAmountByStatus('Запланировано')"
+  [tasksOverdue]="getTasksAmountByStatus('Просрочено')"
+  [tasksFinished]="getTasksAmountByStatus('Выполнено')"
+></app-statistic>
 
 <button class="btn btn-success" (click)="addTask()">Добавить задачу</button>
 
@@ -41,6 +46,13 @@
     <td>08.10.2021</td>
     <td>Незавершено</td>
   </tr>
-  <app-list-row></app-list-row>
+  <app-list-row
+    (deleteTaskEmitter)="deleteTaskFromArray($event)"
+    [name]="'Название 10'"
+    [category]="'Категория 10'"
+    [dateStart]="'18:15 08-10-2018'"
+    [dateEnd]="'20:15 08-10-2018'"
+    [status]="'Выполнено'"
+  ></app-list-row>
   </tbody>
 </table>
