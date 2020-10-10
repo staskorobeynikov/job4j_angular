@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {findIndex} from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-list',
@@ -7,6 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskListComponent implements OnInit {
   tasks = [
+    {
+      name: 'Попытаться изучить Angular',
+      category: 'Работа',
+      dateStart: '07.10.2020',
+      dateEnd: '30.10.2020',
+      status: 'Запланировано'
+    },
+    {
+      name: 'Научиться играть на гитаре',
+      category: 'Хобби',
+      dateStart: '01.04.2020',
+      dateEnd: '22.09.2021',
+      status: 'Запланировано'
+    },
+    {
+      name: 'Выучить английский язык',
+      category: 'Работа',
+      dateStart: '07.10.2020',
+      dateEnd: '08.10.2021',
+      status: 'Запланировано'
+    },
     {
       name: 'Название 1',
       category: 'Категория 1',
@@ -70,7 +92,11 @@ export class TaskListComponent implements OnInit {
     return this.tasks.length;
   }
   deleteTaskFromArray(name: string) {
-    console.log('Задача ' + name + ' удалена');
+    const index = this.tasks.findIndex(t => t.name === name);
+    if (index > -1) {
+      this.tasks.splice(index, 1);
+      console.log('Задача ' + name + ' удалена');
+    }
   }
   getTasksAmountByStatus(status: string) {
     return this.tasks.filter(task => task.status === status).length;

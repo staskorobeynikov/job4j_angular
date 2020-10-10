@@ -11,7 +11,7 @@
 
 <div class="form-check form-check-inline">
   <label class="form-check-label" for="checker">Показывать завершённые задачи</label>
-  <input type="checkbox" id="checker" (change)="filterTasks($event)">
+  <input type="checkbox" id="checker" (change)="filterTasks($event)" checked>
 </div>
 
 <table class="table table-striped, table-bordered">
@@ -25,34 +25,15 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>Попытаться изучить Angular</td>
-    <td>Работа</td>
-    <td>07.10.2020</td>
-    <td>30.10.2020</td>
-    <td>Незавершено</td>
-  </tr>
-  <tr>
-    <td>Научиться играть на гитаре</td>
-    <td>Хобби</td>
-    <td>01.04.2020</td>
-    <td>22.09.2021</td>
-    <td>Незавершено</td>
-  </tr>
-  <tr>
-    <td>Выучить английский язык</td>
-    <td>Работа</td>
-    <td>07.10.2020</td>
-    <td>08.10.2021</td>
-    <td>Незавершено</td>
-  </tr>
-  <app-list-row
-    (deleteTaskEmitter)="deleteTaskFromArray($event)"
-    [name]="'Название 10'"
-    [category]="'Категория 10'"
-    [dateStart]="'18:15 08-10-2018'"
-    [dateEnd]="'20:15 08-10-2018'"
-    [status]="'Выполнено'"
-  ></app-list-row>
+  <ng-container *ngFor="let task of tasks">
+    <app-list-row *ngIf="task.status !== 'Выполнено'"
+                  (deleteTaskEmitter)="deleteTaskFromArray($event)"
+                  [name]="task.name"
+                  [category]="task.category"
+                  [dateStart]="task.dateStart"
+                  [dateEnd]="task.dateEnd"
+                  [status]="task.status"
+    ></app-list-row>
+  </ng-container>
   </tbody>
 </table>
