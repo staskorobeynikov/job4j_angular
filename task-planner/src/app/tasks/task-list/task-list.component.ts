@@ -72,6 +72,7 @@ export class TaskListComponent implements OnInit {
       status: 'Просрочено'
     }
   ];
+  allTasks = true;
 
   constructor() { }
 
@@ -82,6 +83,7 @@ export class TaskListComponent implements OnInit {
     console.log('Задача создана');
   }
   filterTasks($event) {
+    this.allTasks = !this.allTasks;
     if ($event.target.checked) {
       console.log('true');
     } else {

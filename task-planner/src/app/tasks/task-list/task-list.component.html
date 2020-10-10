@@ -26,7 +26,7 @@
   </thead>
   <tbody>
   <ng-container *ngFor="let task of tasks">
-    <app-list-row *ngIf="task.status !== 'Выполнено'"
+    <app-list-row *ngIf="task.status !== 'Выполнено' || allTasks"
                   (deleteTaskEmitter)="deleteTaskFromArray($event)"
                   [name]="task.name"
                   [category]="task.category"
