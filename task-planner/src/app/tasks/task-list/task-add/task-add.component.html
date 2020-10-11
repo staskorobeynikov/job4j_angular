@@ -1,0 +1,31 @@
+<div class="card-body">
+  <div class="form-group row">
+    <label for="task_name" class="col-sm-2 col-form-label" style="font-weight: bold">Название задачи: </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="task_name" title="name" [(ngModel)]="name" placeholder="Введите имя...">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="task_category" class="col-sm-2 col-form-label" style="font-weight: bold">Категория задачи: </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="task_category" [(ngModel)]="category" placeholder="Введите категорию...">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="task_dateStart" class="col-sm-2 col-form-label" style="font-weight: bold">Дата начала задачи: </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="task_dateStart" [(ngModel)]="dateStart" placeholder="Введите дату начала...">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="task_dateEnd" class="col-sm-2 col-form-label" style="font-weight: bold">Дата окончания задачи: </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="task_dateEnd" [(ngModel)]="dateEnd" placeholder="Введите дату окончания...">
+    </div>
+  </div>
+  <button class="btn btn-success" (click)="addNewTask()">Добавить задачу</button>
+</div>
+
+
+
+

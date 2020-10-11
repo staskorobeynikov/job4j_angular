@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {findIndex} from 'rxjs/operators';
+import {Task} from './task.model';
 
 @Component({
   selector: 'app-task-list',
@@ -7,70 +7,61 @@ import {findIndex} from 'rxjs/operators';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  tasks = [
-    {
-      name: 'Попытаться изучить Angular',
-      category: 'Работа',
-      dateStart: '07.10.2020',
-      dateEnd: '30.10.2020',
-      status: 'Запланировано'
-    },
-    {
-      name: 'Научиться играть на гитаре',
-      category: 'Хобби',
-      dateStart: '01.04.2020',
-      dateEnd: '22.09.2021',
-      status: 'Запланировано'
-    },
-    {
-      name: 'Выучить английский язык',
-      category: 'Работа',
-      dateStart: '07.10.2020',
-      dateEnd: '08.10.2021',
-      status: 'Запланировано'
-    },
-    {
-      name: 'Название 1',
-      category: 'Категория 1',
-      dateStart: '18:15 08-10-2018',
-      dateEnd: '20:15 08-10-2018',
-      status: 'Выполнено'
-    },
-    {
-      name: 'Название 2',
-      category: 'Категория 2',
-      dateStart: '18:15 08-10-2018',
-      dateEnd: '20:15 08-10-2018',
-      status: 'Выполнено'
-    },
-    {
-      name: 'Название 3',
-      category: 'Категория 3',
-      dateStart: '18:15 08-10-2018',
-      dateEnd: '20:15 08-10-2018',
-      status: 'Запланировано'
-    },
-    {
-      name: 'Название 4',
-      category: 'Категория 4',
-      dateStart: '18:15 08-10-2018',
-      dateEnd: '20:15 08-10-2018',
-      status: 'Запланировано'
-    },
-    {
-      name: 'Название 5',
-      category: 'Категория 5',
-      dateStart: '18:15 08-10-2018',
-      dateEnd: '20:15 08-10-2018',
-      status: 'Просрочено'
-    },
-    {
-      name: 'Название 6',
-      category: 'Категория 6',
-      dateStart: '18:15 08-10-2018',
-      dateEnd: '20:15 08-10-2018',
-      status: 'Просрочено'
-    }
+  tasks: Task[] = [
+    new Task('Попытаться изучить Angular',
+      'Работа',
+      '07.10.2020',
+      '30.10.2020',
+      'Запланировано'
+    ),
+    new Task('Научиться играть на гитаре',
+      'Хобби',
+      '01.04.2020',
+      '22.09.2021',
+      'Запланировано'
+    ),
+    new Task('Выучить английский язык',
+      'Работа',
+      '07.10.2020',
+      '08.10.2021',
+      'Запланировано'
+    ),
+    new Task('Название 1',
+      'Категория 1',
+      '18:15 08-10-2018',
+      '20:15 08-10-2018',
+      'Выполнено'
+    ),
+    new Task('Название 2',
+      'Категория 2',
+      '18:15 08-10-2018',
+      '20:15 08-10-2018',
+      'Выполнено'
+    ),
+    new Task('Название 3',
+      'Категория 3',
+      '18:15 08-10-2018',
+      '20:15 08-10-2018',
+      'Запланировано'
+    ),
+    new Task('Название 4',
+      'Категория 4',
+      '18:15 08-10-2018',
+      '20:15 08-10-2018',
+      'Запланировано'
+    ),
+    new Task('Название 5',
+      'Категория 5',
+      '18:15 08-10-2018',
+      '20:15 08-10-2018',
+      'Просрочено'
+    ),
+    new Task('Название 6',
+      'Категория 6',
+      '18:15 08-10-2018',
+      '20:15 08-10-2018',
+      'Просрочено'
+    )
   ];
   allTasks = true;
 
@@ -102,5 +93,8 @@ export class TaskListComponent implements OnInit {
   }
   getTasksAmountByStatus(status: string) {
     return this.tasks.filter(task => task.status === status).length;
+  }
+  addNewTaskInStore(task: Task) {
+    this.tasks.push(task);
   }
 }

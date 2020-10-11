@@ -7,6 +7,8 @@ import { HeaderComponent } from './header/header.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
 import { StatisticComponent } from './tasks/statistic/statistic.component';
 import { ListRowComponent } from './tasks/list-row/list-row.component';
+import { TaskAddComponent } from './tasks/task-list/task-add/task-add.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,14 @@ import { ListRowComponent } from './tasks/list-row/list-row.component';
     HeaderComponent,
     TaskListComponent,
     StatisticComponent,
-    ListRowComponent
+    ListRowComponent,
+    TaskAddComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

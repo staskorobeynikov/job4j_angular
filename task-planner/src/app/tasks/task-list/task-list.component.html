@@ -7,7 +7,9 @@
   [tasksFinished]="getTasksAmountByStatus('Выполнено')"
 ></app-statistic>
 
-<button class="btn btn-success" (click)="addTask()">Добавить задачу</button>
+<app-task-add
+  (addTaskEmitter)="addNewTaskInStore($event)"
+></app-task-add>
 
 <div class="form-check form-check-inline">
   <label class="form-check-label" for="checker">Показывать завершённые задачи</label>
