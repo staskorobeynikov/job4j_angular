@@ -64,6 +64,9 @@ export class TaskListComponent implements OnInit {
     )
   ];
   allTasks = true;
+  isEdit = false;
+  taskForEdit: Task;
+  selectedIndex: number;
 
   constructor() { }
 
@@ -96,5 +99,20 @@ export class TaskListComponent implements OnInit {
   }
   addNewTaskInStore(task: Task) {
     this.tasks.push(task);
+  }
+  getTaskForEdit(task: Task) {
+    this.isEdit = !this.isEdit;
+    this.taskForEdit = task;
+    this.selectedIndex = this.tasks.findIndex(t => t.name === task.name);
+  }
+  changedTask(task: Task) {
+    if (task.name === '') {
+      this.isEdit = !this.isEdit;
+      return;
+    }
+    if (this.selectedIndex > -1) {
+      this.tasks[this.selectedIndex] = task;
+    }
+    this.isEdit = !this.isEdit;
   }
 }

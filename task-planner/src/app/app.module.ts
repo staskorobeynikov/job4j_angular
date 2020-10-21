@@ -9,6 +9,7 @@ import { StatisticComponent } from './tasks/statistic/statistic.component';
 import { ListRowComponent } from './tasks/list-row/list-row.component';
 import { TaskAddComponent } from './tasks/task-list/task-add/task-add.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { EditTaskComponent } from './tasks/task-list/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     TaskListComponent,
     StatisticComponent,
     ListRowComponent,
-    TaskAddComponent
+    TaskAddComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,

@@ -7,9 +7,14 @@
   [tasksFinished]="getTasksAmountByStatus('Выполнено')"
 ></app-statistic>
 
-<app-task-add
-  (addTaskEmitter)="addNewTaskInStore($event)"
+<app-task-add *ngIf="!isEdit"
+              (addTaskEmitter)="addNewTaskInStore($event)"
 ></app-task-add>
+
+<app-edit-task *ngIf="isEdit"
+               [task]="taskForEdit"
+               (editEmitter)="changedTask($event)"
+></app-edit-task>
 
 <div class="form-check form-check-inline">
   <label class="form-check-label" for="checker">Показывать завершённые задачи</label>
@@ -35,6 +40,7 @@
                   [dateStart]="task.dateStart"
                   [dateEnd]="task.dateEnd"
                   [status]="task.status"
+                  (click)="getTaskForEdit(task)"
     ></app-list-row>
   </ng-container>
   </tbody>

@@ -1,0 +1,34 @@
+<div class="card-body">
+  <div class="form-group row">
+    <label for="task_name" class="col-sm-2 col-form-label" style="font-weight: bold">Название задачи: </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="task_name" title="name" [value]="task.name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="task_category" class="col-sm-2 col-form-label" style="font-weight: bold">Категория задачи: </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="task_category" [value]="task.category">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="task_dateStart" class="col-sm-2 col-form-label" style="font-weight: bold">Дата начала задачи: </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="task_dateStart" [value]="task.dateStart">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="task_dateEnd" class="col-sm-2 col-form-label" style="font-weight: bold">Дата окончания задачи: </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="task_dateEnd" [value]="task.dateEnd">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="task_status" class="col-sm-2 col-form-label" style="font-weight: bold">Статус задачи: </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="task_status" [value]="task.status">
+    </div>
+  </div>
+  <button class="btn btn-success" (click)="editTask()">Изменить задачу</button>
+  <button class="btn btn-success" (click)="cancel()">Отменить</button>
+</div>
