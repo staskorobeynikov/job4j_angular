@@ -100,10 +100,10 @@ export class TaskListComponent implements OnInit {
   addNewTaskInStore(task: Task) {
     this.tasks.push(task);
   }
-  getTaskForEdit(task: Task) {
+  getTaskForEdit(idx: number) {
     this.isEdit = !this.isEdit;
-    this.taskForEdit = task;
-    this.selectedIndex = this.tasks.findIndex(t => t.name === task.name);
+    this.taskForEdit = {...this.tasks[idx]};
+    this.selectedIndex = idx;
   }
   changedTask(task: Task) {
     if (task.name === '') {

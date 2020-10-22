@@ -14,11 +14,7 @@ export class EditTaskComponent implements OnInit {
   ngOnInit(): void {
   }
   editTask() {
-    const newName = (document.getElementById('task_name') as HTMLInputElement).value;
-    const newCategory = (document.getElementById('task_category') as HTMLInputElement).value;
-    const newDataEnd = (document.getElementById('task_dateEnd') as HTMLInputElement).value;
-    const newStatus = (document.getElementById('task_status') as HTMLInputElement).value;
-    this.editEmitter.emit(new Task(newName, newCategory, this.task.dateStart, newDataEnd, newStatus));
+    this.editEmitter.emit(this.task);
   }
   cancel() {
     this.editEmitter.emit(new Task(
