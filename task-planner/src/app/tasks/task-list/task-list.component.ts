@@ -101,7 +101,9 @@ export class TaskListComponent implements OnInit {
     this.tasks.push(task);
   }
   getTaskForEdit(idx: number) {
-    this.isEdit = !this.isEdit;
+    if (!this.isEdit) {
+      this.isEdit = !this.isEdit;
+    }
     this.taskForEdit = {...this.tasks[idx]};
     this.selectedIndex = idx;
   }

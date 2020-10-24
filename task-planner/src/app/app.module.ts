@@ -10,6 +10,8 @@ import { ListRowComponent } from './tasks/list-row/list-row.component';
 import { TaskAddComponent } from './tasks/task-list/task-add/task-add.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EditTaskComponent } from './tasks/task-list/edit-task/edit-task.component';
+import { ValidDateDirective } from './shared/directives/valid-date.directive';
+import { InputStyleDirective } from './shared/directives/input-style.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { EditTaskComponent } from './tasks/task-list/edit-task/edit-task.compone
     StatisticComponent,
     ListRowComponent,
     TaskAddComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    ValidDateDirective,
+    InputStyleDirective
   ],
   imports: [
     BrowserModule,
