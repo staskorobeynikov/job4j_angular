@@ -72,10 +72,6 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  addTask() {
-    console.log('Задача создана');
-  }
   filterTasks($event) {
     this.allTasks = !this.allTasks;
     if ($event.target.checked) {

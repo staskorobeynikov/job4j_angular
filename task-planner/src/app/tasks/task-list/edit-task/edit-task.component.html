@@ -14,13 +14,13 @@
   <div class="form-group row">
     <label for="task_dateStart" class="col-sm-2 col-form-label" style="font-weight: bold">Дата начала задачи: </label>
     <div class="col-sm-5">
-      <input appInputStyle type="text" class="form-control" id="task_dateStart" [(ngModel)]="task.dateStart">
+      <input appValidDate appInputStyle type="text" class="form-control" id="task_dateStart" [(ngModel)]="task.dateStart">
     </div>
   </div>
   <div class="form-group row">
     <label for="task_dateEnd" class="col-sm-2 col-form-label" style="font-weight: bold">Дата окончания задачи: </label>
     <div class="col-sm-5">
-      <input appInputStyle type="text" class="form-control" id="task_dateEnd" [(ngModel)]="task.dateEnd">
+      <input appValidDate appInputStyle type="text" class="form-control" id="task_dateEnd" [(ngModel)]="task.dateEnd">
     </div>
   </div>
   <div class="form-group row">

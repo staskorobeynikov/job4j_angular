@@ -14,13 +14,13 @@
   <div class="form-group row">
     <label for="task_dateStart" class="col-sm-2 col-form-label" style="font-weight: bold">Дата начала задачи: </label>
     <div class="col-sm-5">
-      <input appValidDate [(ngModel)]="dateStart" appInputStyle type="text" class="form-control" id="task_dateStart" placeholder="Введите дату начала...">
+      <input appValidDate appInputStyle [(ngModel)]="dateStart" type="text" class="form-control" id="task_dateStart" placeholder="Введите дату начала...">
     </div>
   </div>
   <div class="form-group row">
     <label for="task_dateEnd" class="col-sm-2 col-form-label" style="font-weight: bold">Дата окончания задачи: </label>
     <div class="col-sm-5">
-      <input appInputStyle type="text" class="form-control" id="task_dateEnd" [(ngModel)]="dateEnd" placeholder="Введите дату окончания...">
+      <input appValidDate appInputStyle type="text" class="form-control" id="task_dateEnd" [(ngModel)]="dateEnd" placeholder="Введите дату окончания...">
     </div>
   </div>
   <button class="btn btn-success" (click)="addNewTask()">Добавить задачу</button>

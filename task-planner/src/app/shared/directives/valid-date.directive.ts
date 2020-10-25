@@ -1,16 +1,14 @@
-import {Directive, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2} from '@angular/core';
+import {Directive, ElementRef, HostListener, Input} from '@angular/core';
 
 @Directive({
   selector: '[appValidDate]'
 })
 export class ValidDateDirective {
-  @Input() dateStart: string;
-  @Output() dateStartChange = new EventEmitter<string>();
 
-  constructor(private elRef: ElementRef, private renderer: Renderer2) { }
-  @HostListener('input', ['event'])
+  constructor(private elRef: ElementRef) { }
+  @Input() dateStart: string;
+  @HostListener('input', ['$event'])
   onInput(event: Event) {
-    this.dateStart = this.elRef.nativeElement.value.replace(/[^-:0-9]+/, '');
-    this.dateStartChange.emit(this.dateStart);
+    this.elRef.nativeElement.value = (event.target as HTMLInputElement).value.replace(/[^-:0-9]+/, '');
   }
 }
