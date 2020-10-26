@@ -26,7 +26,12 @@
   <div class="form-group row">
     <label for="task_status" class="col-sm-2 col-form-label" style="font-weight: bold">Статус задачи: </label>
     <div class="col-sm-5">
-      <input appInputStyle type="text" class="form-control" id="task_status" [(ngModel)]="task.status">
+      <select class="form-control" id="task_status" [(ngModel)]="task.status">
+        <option selected>{{task.status}}</option>
+        <option value="Запланировано">Запланировано</option>
+        <option value="Просрочено">Просрочено</option>
+        <option value="Выполнено">Выполнено</option>
+      </select>
     </div>
   </div>
   <button class="btn btn-success" (click)="editTask()">Изменить задачу</button>
