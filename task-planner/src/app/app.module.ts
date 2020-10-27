@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EditTaskComponent } from './tasks/task-list/edit-task/edit-task.component';
 import { ValidDateDirective } from './shared/directives/valid-date.directive';
 import { InputStyleDirective } from './shared/directives/input-style.directive';
+import { MyTitleCasePipe } from './shared/pipes/my-title-case.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { InputStyleDirective } from './shared/directives/input-style.directive';
     TaskAddComponent,
     EditTaskComponent,
     ValidDateDirective,
-    InputStyleDirective
+    InputStyleDirective,
+    MyTitleCasePipe
   ],
   imports: [
     BrowserModule,

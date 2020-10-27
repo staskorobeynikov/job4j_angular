@@ -1,6 +1,6 @@
 <tr>
-  <td>{{name}}</td>
-  <td>{{category}}</td>
+  <td>{{name | myTitleCase}}</td>
+  <td>{{category | myTitleCase}}</td>
   <td>{{dateStart}}</td>
   <td>{{dateEnd}}</td>
   <td [ngClass]="[status==='Просрочено' ? 'overdue' : 'notOverdue']">{{status}}
