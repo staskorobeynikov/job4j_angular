@@ -1,8 +1,8 @@
 <tr>
   <td>{{name | myTitleCase}}</td>
   <td>{{category | myTitleCase}}</td>
-  <td>{{dateStart}}</td>
-  <td>{{dateEnd}}</td>
+  <td>{{helpService.beatifyDate(dateStart, 'YYYY-MM-DD hh:mm','DD/MMMM/YYYY hh:mm:ss')}}</td>
+  <td>{{helpService.beatifyDate(dateEnd, 'YYYY-MM-DD hh:mm','DD/MMMM/YYYY hh:mm:ss')}}</td>
   <td [ngClass]="[status==='Просрочено' ? 'overdue' : 'notOverdue']">{{status}}
     <button class="btn btn-danger" (click)="deleteTask()">Удалить задание</button></td>
 </tr>
