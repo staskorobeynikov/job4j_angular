@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {Task} from '../task.model';
+import {TaskContainerService} from '../../../shared/services/task-container.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -7,24 +8,31 @@ import {Task} from '../task.model';
   styleUrls: ['./edit-task.component.css']
 })
 export class EditTaskComponent implements OnInit, OnChanges, OnDestroy {
-  @Output() editEmitter = new EventEmitter<Task>();
   @Input() task: Task;
-  constructor() { }
+  constructor(
+    private taskContainerService: TaskContainerService
+  ) { }
 
   ngOnInit(): void {
+    this.taskContainerService.dataUpdate$.subscribe(
+      (data: Task) => {
+        this.task = data;
+      }
+    );
+    console.log(this.task);
     console.log('onInit');
   }
   editTask() {
-    this.editEmitter.emit(this.task);
+    this.taskContainerService.update(this.task);
   }
   cancel() {
-    this.editEmitter.emit(new Task(
+    this.taskContainerService.update(new Task(
       this.task.name,
       this.task.category,
       this.task.dateStart,
       this.task.dateEnd,
-      this.task.status
-    ));
+      this.task.status)
+    );
   }
 
   ngOnChanges(): void {

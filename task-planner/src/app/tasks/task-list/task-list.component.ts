@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Task} from './task.model';
+import {TaskContainerService} from '../../shared/services/task-container.service';
 
 @Component({
   selector: 'app-task-list',
@@ -68,9 +69,15 @@ export class TaskListComponent implements OnInit {
   taskForEdit: Task;
   selectedIndex: number;
 
-  constructor() { }
+  constructor(private taskContainerService: TaskContainerService) { }
 
   ngOnInit(): void {
+    this.taskContainerService.dataUpdate$.subscribe(
+      (data: Task) => {
+        this.changedTask(data);
+      }
+    );
+    console.log('onInit');
   }
   filterTasks($event) {
     this.allTasks = !this.allTasks;

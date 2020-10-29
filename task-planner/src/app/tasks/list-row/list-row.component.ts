@@ -14,7 +14,7 @@ export class ListRowComponent implements OnInit {
   @Input() status;
   @Output() deleteTaskEmitter = new EventEmitter<string>();
   constructor(
-    private helpService: HelperService
+    public helpService: HelperService
   ) { }
 
   ngOnInit(): void {

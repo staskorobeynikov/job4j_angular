@@ -13,6 +13,8 @@ import { EditTaskComponent } from './tasks/task-list/edit-task/edit-task.compone
 import { ValidDateDirective } from './shared/directives/valid-date.directive';
 import { InputStyleDirective } from './shared/directives/input-style.directive';
 import { MyTitleCasePipe } from './shared/pipes/my-title-case.pipe';
+import {TaskContainerService} from './shared/services/task-container.service';
+import {HelperService} from './shared/services/helper.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,10 @@ import { MyTitleCasePipe } from './shared/pipes/my-title-case.pipe';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    HelperService,
+    TaskContainerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
