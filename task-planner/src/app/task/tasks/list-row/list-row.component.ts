@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {HelperService} from '../../shared/services/helper.service';
+import {HelperService} from '../../../shared/services/helper.service';
+
 
 @Component({
   selector: 'app-list-row',
