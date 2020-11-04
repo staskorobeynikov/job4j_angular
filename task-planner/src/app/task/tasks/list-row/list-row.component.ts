@@ -3,7 +3,8 @@ import {HelperService} from '../../../shared/services/helper.service';
 
 
 @Component({
-  selector: 'app-list-row',
+  // tslint:disable-next-line:component-selector
+  selector: '[app-list-row]',
   templateUrl: './list-row.component.html',
   styleUrls: ['./list-row.component.css'],
 })

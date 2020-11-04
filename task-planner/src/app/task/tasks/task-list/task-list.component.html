@@ -13,7 +13,6 @@
 
 <app-edit-task *ngIf="isEdit"
                [task]="taskForEdit"
-
 ></app-edit-task>
 
 <div class="form-check form-check-inline">
@@ -33,15 +32,15 @@
   </thead>
   <tbody>
   <ng-container *ngFor="let task of tasks; let idx=index">
-    <app-list-row *ngIf="task.status !== 'Выполнено' || allTasks"
-                  (deleteTaskEmitter)="deleteTaskFromArray($event)"
-                  [name]="task.name"
-                  [category]="task.category"
-                  [dateStart]="task.dateStart"
-                  [dateEnd]="task.dateEnd"
-                  [status]="task.status"
-                  (click)="getTaskForEdit(idx)"
-    ></app-list-row>
+    <tr *ngIf="task.status !== 'Выполнено' || allTasks" app-list-row
+      (deleteTaskEmitter)="deleteTaskFromArray($event)"
+      [name]="task.name"
+      [category]="task.category"
+      [dateStart]="task.dateStart"
+      [dateEnd]="task.dateEnd"
+      [status]="task.status"
+      (click)="getTaskForEdit(idx)"
+    ></tr>
   </ng-container>
   </tbody>
 </table>
