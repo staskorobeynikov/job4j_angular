@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Task} from './task.model';
 import {TaskContainerService} from '../../../shared/services/task-container.service';
-
+import {TaskStorageService} from '../../../shared/services/task-storage.service';
 
 @Component({
   selector: 'app-task-list',
@@ -9,75 +9,17 @@ import {TaskContainerService} from '../../../shared/services/task-container.serv
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  tasks: Task[] = [
-    new Task('Попытаться изучить Angular',
-      'Работа',
-      '2020-10-07 10:00',
-      '2020-10-30 12:00',
-      'Запланировано'
-    ),
-    new Task('Научиться играть на гитаре',
-      'Хобби',
-      '2020-04-01 21:00',
-      '2021-09-22 14:00',
-      'Запланировано'
-    ),
-    new Task('Выучить английский язык',
-      'Работа',
-      '2020-10-07 00:00',
-      '2021-10-08 00:00',
-      'Запланировано'
-    ),
-    new Task('Название 1',
-      'Категория 1',
-      '2018-08-10 18:15',
-      '2018-08-10 20:15',
-      'Выполнено'
-    ),
-    new Task('Название 2',
-      'Категория 2',
-      '2018-08-10 18:15',
-      '2018-08-10 20:15',
-      'Выполнено'
-    ),
-    new Task('Название 3',
-      'Категория 3',
-      '2018-08-10 18:15',
-      '2018-08-10 20:15',
-      'Запланировано'
-    ),
-    new Task('Название 4',
-      'Категория 4',
-      '2018-08-10 18:15',
-      '2018-08-10 20:15',
-      'Запланировано'
-    ),
-    new Task('Название 5',
-      'Категория 5',
-      '2018-08-10 18:15',
-      '2018-08-10 20:15',
-      'Просрочено'
-    ),
-    new Task('Название 6',
-      'Категория 6',
-      '2018-08-10 18:15',
-      '2018-08-10 20:15',
-      'Просрочено'
-    )
-  ];
+  tasks: Task[];
   allTasks = true;
   isEdit = false;
-  taskForEdit: Task;
-  selectedIndex: number;
 
-  constructor(private taskContainerService: TaskContainerService) { }
+  constructor(
+    private taskContainerService: TaskContainerService,
+    private taskStore: TaskStorageService
+  ) { }
 
   ngOnInit(): void {
-    this.taskContainerService.dataUpdate$.subscribe(
-      (data: Task) => {
-        this.changedTask(data);
-      }
-    );
+    this.tasks = this.taskStore.getAllTasks();
     console.log('onInit');
   }
   filterTasks($event) {
@@ -100,25 +42,5 @@ export class TaskListComponent implements OnInit {
   }
   getTasksAmountByStatus(status: string) {
     return this.tasks.filter(task => task.status === status).length;
-  }
-  addNewTaskInStore(task: Task) {
-    this.tasks.push(task);
-  }
-  getTaskForEdit(idx: number) {
-    if (!this.isEdit) {
-      this.isEdit = !this.isEdit;
-    }
-    this.taskForEdit = {...this.tasks[idx]};
-    this.selectedIndex = idx;
-  }
-  changedTask(task: Task) {
-    if (task.name === '') {
-      this.isEdit = !this.isEdit;
-      return;
-    }
-    if (this.selectedIndex > -1) {
-      this.tasks[this.selectedIndex] = task;
-    }
-    this.isEdit = !this.isEdit;
   }
 }

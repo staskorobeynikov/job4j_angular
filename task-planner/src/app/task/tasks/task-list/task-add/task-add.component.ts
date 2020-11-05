@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Task} from '../task.model';
+import {TaskStorageService} from '../../../../shared/services/task-storage.service';
 
 @Component({
   selector: 'app-task-add',
@@ -12,16 +13,17 @@ export class TaskAddComponent implements OnInit {
   @Input() dateStart: string;
   @Input() dateEnd: string;
   status = 'Запланировано';
-  @Output() addTaskEmitter = new EventEmitter<Task>();
-  constructor() { }
+  constructor(
+    private taskStore: TaskStorageService
+  ) { }
 
   ngOnInit(): void {
   }
   addNewTask() {
-    const task: Task = new Task(
-      this.name, this.category, this.dateStart, this.dateEnd, this.status
-    );
-    this.addTaskEmitter.emit(task);
+    const maxId = this.taskStore.getMaxId();
+    this.taskStore.addTask(new Task(
+      this.name, this.category, this.dateStart, this.dateEnd, this.status, maxId + 1
+    ));
     this.name = '';
     this.category = '';
     this.dateStart = '';

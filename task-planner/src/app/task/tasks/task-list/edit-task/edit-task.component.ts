@@ -1,7 +1,9 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {Task} from '../task.model';
 import {TaskContainerService} from '../../../../shared/services/task-container.service';
-
+import {ActivatedRoute, Params} from '@angular/router';
+import {TaskStorageService} from '../../../../shared/services/task-storage.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-edit-task',
@@ -9,39 +11,45 @@ import {TaskContainerService} from '../../../../shared/services/task-container.s
   styleUrls: ['./edit-task.component.css']
 })
 export class EditTaskComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() task: Task;
+  editedTask: Task;
   constructor(
-    private taskContainerService: TaskContainerService
+    private taskContainerService: TaskContainerService,
+    private route: ActivatedRoute,
+    private taskStore: TaskStorageService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
-    this.taskContainerService.dataUpdate$.subscribe(
-      (data: Task) => {
-        this.task = data;
+    this.route.params.subscribe((params: Params) => {
+      const byId = this.taskStore.getById(+params.id);
+      if (byId.status === 'Выполнено') {
+        alert('Нельзя изменить выполненную задачу');
+        setTimeout(() => this.cancel());
+      } else {
+        this.editedTask = new Task(
+          byId.name,
+          byId.category,
+          byId.dateStart,
+          byId.dateEnd,
+          byId.status,
+          byId.id
+        );
       }
-    );
-    console.log(this.task);
-    console.log('onInit');
+    });
   }
   editTask() {
-    this.taskContainerService.update(this.task);
+    this.taskContainerService.dataUpdate$.subscribe((data: Task) => {
+      this.taskStore.updateTask(data.id, data);
+      this.location.back();
+    });
+    this.taskContainerService.update(this.editedTask);
   }
   cancel() {
-    this.taskContainerService.update(new Task(
-      this.task.name,
-      this.task.category,
-      this.task.dateStart,
-      this.task.dateEnd,
-      this.task.status)
-    );
+    this.location.back();
   }
 
   ngOnChanges(): void {
     console.log('onChanges');
-    if (this.task.status === 'Выполнено') {
-      alert('Нельзя изменить выполненную задачу');
-      setTimeout(() => this.cancel());
-    }
   }
 
   ngOnDestroy(): void {

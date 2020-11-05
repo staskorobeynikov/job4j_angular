@@ -8,12 +8,9 @@
 ></app-statistic>
 
 <app-task-add *ngIf="!isEdit"
-              (addTaskEmitter)="addNewTaskInStore($event)"
 ></app-task-add>
 
-<app-edit-task *ngIf="isEdit"
-               [task]="taskForEdit"
-></app-edit-task>
+<router-outlet></router-outlet>
 
 <div class="form-check form-check-inline">
   <label class="form-check-label" for="checker">Показывать завершённые задачи</label>
@@ -31,15 +28,15 @@
   </tr>
   </thead>
   <tbody>
-  <ng-container *ngFor="let task of tasks; let idx=index">
+  <ng-container *ngFor="let task of tasks">
     <tr *ngIf="task.status !== 'Выполнено' || allTasks" app-list-row
-      (deleteTaskEmitter)="deleteTaskFromArray($event)"
-      [name]="task.name"
-      [category]="task.category"
-      [dateStart]="task.dateStart"
-      [dateEnd]="task.dateEnd"
-      [status]="task.status"
-      (click)="getTaskForEdit(idx)"
+        (deleteTaskEmitter)="deleteTaskFromArray($event)"
+        [name]="task.name"
+        [category]="task.category"
+        [dateStart]="task.dateStart"
+        [dateEnd]="task.dateEnd"
+        [status]="task.status"
+        [routerLink]="['/tasks', task.id]"
     ></tr>
   </ng-container>
   </tbody>

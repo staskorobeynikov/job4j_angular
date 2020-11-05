@@ -4,7 +4,8 @@ export class Task {
     public category: string,
     public dateStart: string,
     public dateEnd: string,
-    public status: string
+    public status: string,
+    public id?: number
   ) {
   }
 }
