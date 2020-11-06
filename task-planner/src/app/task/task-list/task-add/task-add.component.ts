@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Task} from '../task.model';
-import {TaskStorageService} from '../../../../shared/services/task-storage.service';
+import {TaskStorageService} from '../../../shared/services/task-storage.service';
+
 
 @Component({
   selector: 'app-task-add',
