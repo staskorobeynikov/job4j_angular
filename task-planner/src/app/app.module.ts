@@ -10,6 +10,7 @@ import {SharedModule} from './shared/shared.module';
 import {TaskModule} from './task/task.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
+import {LoginModule} from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {CommonModule} from '@angular/common';
     TaskModule,
     FormsModule,
     BrowserModule,
-    CommonModule
+    CommonModule,
+    LoginModule
   ],
   providers: [
     HelperService,
