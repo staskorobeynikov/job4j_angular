@@ -7,6 +7,7 @@ import {TaskListComponent} from './task/task-list/task-list.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './auth.guard';
 import {GuestGuard} from './guest.guard';
+import {RegistrationComponent} from './registration/registration.component';
 
 const routes: Routes = [
   {path: 'tasks', component: TaskListComponent, canActivate: [AuthGuard], children: [
@@ -14,7 +15,8 @@ const routes: Routes = [
     ]
   },
   {path: 'notes', component: NotesListComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent, canActivate: [GuestGuard]}
+  {path: 'login', component: LoginComponent, canActivate: [GuestGuard]},
+  {path: 'reg', component: RegistrationComponent, canActivate: [GuestGuard]}
 ];
 
 @NgModule({

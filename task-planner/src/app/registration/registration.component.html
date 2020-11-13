@@ -1,0 +1,50 @@
+<div class="card-body">
+  <form (ngSubmit)="submitForm(loginForm)" #loginForm="ngForm">
+    <div class="form-group row">
+      <label for="login" class="col-sm-2 col-form-label" style="font-weight: bold">Ваш логин: </label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="login" ngModel name="login">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="password" class="col-sm-2 col-form-label" style="font-weight: bold">Ваш пароль: </label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" id="password" ngModel name="password">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="city" class="col-sm-2 col-form-label" style="font-weight: bold">Выберите город: </label>
+      <div class="col-sm-5">
+        <select class="form-control" id="city" name="city" ngModel>
+          <option selected>Выберите город...</option>
+          <option value="Minsk">Minsk</option>
+          <option value="Kishinev">Kishinev</option>
+          <option value="Bryansk">Bryansk</option>
+          <option value="Ufa">Ufa</option>
+          <option value="Moscow">Moscow</option>
+          <option value="St. Petersburg">St. Petersburg</option>
+        </select>
+      </div>
+    </div>
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-2 pt-0" style="font-weight: bold">Отправлять уведомления: </legend>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="subscribe" id="subscribe1" value="true" checked ngModel>
+            <label class="form-check-label" for="subscribe1">
+              Отправлять
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="subscribe" id="subscribe2" value="false" ngModel>
+            <label class="form-check-label" for="subscribe2">
+              Не отправлять
+            </label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+  </form>
+</div>

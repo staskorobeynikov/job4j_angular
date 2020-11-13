@@ -11,10 +11,12 @@ import {TaskModule} from './task/task.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {LoginModule} from './login/login.module';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RegistrationComponent
   ],
   imports: [
     AppRoutingModule,

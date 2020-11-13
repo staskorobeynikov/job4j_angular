@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/services/auth.service';
 import {User} from '../shared/user.model';
-import {ActivatedRoute} from '@angular/router';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +9,6 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @Input() login: string;
-  @Input() password: string;
   isAuth = true;
   constructor(
     private authService: AuthService,
@@ -18,8 +16,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  loginIn() {
-    this.isAuth = this.authService.checkAccount(new User(this.login, this.password));
+  submitForm(loginForm: NgForm) {
+    this.isAuth = this.authService.checkAccount(
+      new User(
+        loginForm.form.value.login,
+        loginForm.form.value.password
+      )
+    );
   }
 }
