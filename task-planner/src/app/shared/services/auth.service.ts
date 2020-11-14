@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {User} from '../user.model';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -24,24 +25,28 @@ export class AuthService {
       'root'
     )
   ];
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
   setItem() {
-    this.isLoggedIn = true;
+    localStorage.setItem('isLoggedIn', JSON.stringify(this.isLoggedIn));
   }
   getItem(): Promise<boolean> {
     return new Promise<boolean>(resolve => {
-        resolve(this.isLoggedIn);
+      resolve(JSON.parse(localStorage.getItem('isLoggedIn')));
     });
   }
   checkAccount(user: User): boolean {
     const find = this.users.find(u => u.login === user.login && u.password === user.password);
     if (find !== undefined) {
-      console.log(user);
+      this.isLoggedIn = true;
       this.setItem();
     }
     return this.isLoggedIn;
   }
   logOut() {
     this.isLoggedIn = false;
+    this.setItem();
+    this.router.navigate(['login']);
   }
 }

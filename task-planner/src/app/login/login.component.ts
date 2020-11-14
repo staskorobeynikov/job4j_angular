@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/services/auth.service';
 import {User} from '../shared/user.model';
 import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ export class LoginComponent implements OnInit {
   isAuth = true;
   constructor(
     private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -23,5 +25,8 @@ export class LoginComponent implements OnInit {
         loginForm.form.value.password
       )
     );
+    if (this.isAuth) {
+      this.router.navigate(['tasks']);
+    }
   }
 }
