@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   submitForm(loginForm: NgForm) {
+    console.log(loginForm);
     this.isAuth = this.authService.checkAccount(
       new User(
         loginForm.form.value.login,

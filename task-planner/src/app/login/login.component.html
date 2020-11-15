@@ -8,17 +8,45 @@
 <div class="card-body">
   <form (ngSubmit)="submitForm(loginForm)" #loginForm="ngForm">
     <div class="form-group row">
+      <label for="email" class="col-sm-2 col-form-label" style="font-weight: bold">Ваш email: </label>
+      <div class="col-sm-5">
+        <input ngModel
+               name="email"
+               required
+               email
+               #email="ngModel"
+               class="form-control"
+               id="email">
+        <p *ngIf="email.invalid && email.touched" style="color:red">Введите корректный email</p>
+      </div>
+    </div>
+    <div class="form-group row">
       <label for="login" class="col-sm-2 col-form-label" style="font-weight: bold">Ваш логин: </label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="login" ngModel name="login">
+        <input ngModel
+               name="login"
+               required
+               type="text"
+               class="form-control"
+               id="login">
       </div>
     </div>
     <div class="form-group row">
       <label for="password" class="col-sm-2 col-form-label" style="font-weight: bold">Ваш пароль: </label>
       <div class="col-sm-5">
-        <input type="text" class="form-control" id="password" ngModel name="password">
+        <input ngModel
+               name="password"
+               required
+               minlength="4"
+               maxlength="15"
+               #password="ngModel"
+               [style]="password.invalid"
+               type="text"
+               class="form-control"
+               id="password">
+        <p *ngIf="password.invalid && password.touched" style="color:red">Пароль меньше 4 или больше 15 символов</p>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Войти</button>
+    <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Войти</button>
   </form>
 </div>
