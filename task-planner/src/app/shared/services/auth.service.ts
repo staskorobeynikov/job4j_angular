@@ -23,6 +23,10 @@ export class AuthService {
     new User(
       'root1000',
       'root'
+    ),
+    new User(
+      'anonymous',
+      'root'
     )
   ];
   constructor(
