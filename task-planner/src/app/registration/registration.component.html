@@ -1,50 +1,81 @@
-<div class="card-body">
-  <form (ngSubmit)="submitForm(loginForm)" #loginForm="ngForm">
-    <div class="form-group row">
-      <label for="login" class="col-sm-2 col-form-label" style="font-weight: bold">Ваш логин: </label>
-      <div class="col-sm-5">
-        <input type="text" class="form-control" id="login" ngModel name="login">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="password" class="col-sm-2 col-form-label" style="font-weight: bold">Ваш пароль: </label>
-      <div class="col-sm-5">
-        <input type="text" class="form-control" id="password" ngModel name="password">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="city" class="col-sm-2 col-form-label" style="font-weight: bold">Выберите город: </label>
-      <div class="col-sm-5">
-        <select class="form-control" id="city" name="city" ngModel>
-          <option selected>Выберите город...</option>
-          <option value="Minsk">Minsk</option>
-          <option value="Kishinev">Kishinev</option>
-          <option value="Bryansk">Bryansk</option>
-          <option value="Ufa">Ufa</option>
-          <option value="Moscow">Moscow</option>
-          <option value="St. Petersburg">St. Petersburg</option>
-        </select>
-      </div>
-    </div>
-    <fieldset class="form-group">
-      <div class="row">
-        <legend class="col-form-label col-sm-2 pt-0" style="font-weight: bold">Отправлять уведомления: </legend>
-        <div class="col-sm-10">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="subscribe" id="subscribe1" value="true" checked ngModel>
-            <label class="form-check-label" for="subscribe1">
-              Отправлять
-            </label>
+<div class="container mt-5">
+  <div class="col-sm">
+    <div class="w-100 card">
+      <div class="card-body">
+        <form [formGroup]="registrationForm">
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input name="email"
+                   formControlName="email"
+                   type="email"
+                   class="form-control"
+                   id="inputEmail"
+                   placeholder="Email">
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="subscribe" id="subscribe2" value="false" ngModel>
-            <label class="form-check-label" for="subscribe2">
-              Не отправлять
-            </label>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input name="lastName"
+                   formControlName="lastName"
+                   type="text"
+                   class="form-control"
+                   id="lastName"
+                   placeholder="Last Name">
           </div>
-        </div>
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input
+              name="password"
+              formControlName="password"
+              type="password"
+              class="form-control"
+              id="inputPassword"
+              placeholder="Password">
+          </div>
+          <div class="form-group">
+            <label for="repeatPassword">Password check</label>
+            <input
+              name="password"
+              type="password"
+              class="form-control"
+              id="repeatPassword"
+              placeholder="Repeat Password">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="phone">Phone</label>
+              <input
+                name="phone"
+                formControlName="phone"
+                type="text"
+                class="form-control"
+                id="phone"
+                placeholder="Phone">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputState">Type</label>
+              <select id="inputState" class="form-control" formControlName="inputState">
+                <option selected>Рабочий</option>
+                <option>Мобильный</option>
+                <option>Домашний</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-info">Добавить телефон</button>
+          </div>
+          <div class="form-group">
+            <label class="form-check-label">
+              <input
+                name="remember"
+                formControlName="remember"
+                type="checkbox"> Получать уведомления</label>
+          </div>
+          <button (click)="send()"
+            type="submit"
+            class="btn btn-primary mr-2">
+            Зарегистрироваться</button>
+        </form>
       </div>
-    </fieldset>
-    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-  </form>
+    </div>
+  </div>
 </div>
