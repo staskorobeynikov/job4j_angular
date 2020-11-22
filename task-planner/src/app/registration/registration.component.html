@@ -50,10 +50,20 @@
           <div class="form-group">
             <label for="repeatPassword">Password check</label>
             <input name="password"
-              type="password"
-              class="form-control"
-              id="repeatPassword"
-              placeholder="Repeat Password">
+                   formControlName="repeatPassword"
+                   type="password"
+                   class="form-control"
+                   id="repeatPassword"
+                   placeholder="Repeat Password">
+            <span [ngStyle]="{color: 'red'}"
+                  *ngIf="(registrationForm.errors?.mismatch && registrationForm.get('repeatPassword').touched)">
+              Введенные пароли не совпадают
+            </span>
+            <div *ngFor="let error of formErrors.repeatPassword">
+              <span *ngIf="(registrationForm.get('repeatPassword').hasError(error.type)
+              && registrationForm.get('repeatPassword').touched)"
+                    [ngStyle]="{color: 'red'}">{{ error.message }}</span>
+            </div>
           </div>
           <ng-container formGroupName="phones">
             <ng-container *ngFor="let phones of phones().controls; let i = index"

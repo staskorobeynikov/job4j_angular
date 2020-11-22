@@ -18,12 +18,17 @@ export class RegistrationComponent implements OnInit {
     ],
     password: [
       { type: 'required', message: 'Данное поле обязательно к заполнению.' },
-      { type: 'minlength', message: 'Пароль не может содержать меньше 4 символов.' },
-      { type: 'pattern', message: 'Пароль может содержать только строчные и прописные латинские буквы, цифры.' }
+      { type: 'minlength', message: 'Пароль не может содержать меньше 6 символов.' },
+      { type: 'maxLength', message: 'Пароль не может содержать больше 15 символов.' },
+      { type: 'nonSpec', message: 'Пароль должен содержать одну заглавную и прописную букву, цифру и спецсимвол.' }
     ],
     phone: [
       { type: 'required', message: 'Данное поле обязательно к заполнению.' },
       { type: 'pattern', message: 'Номер телефона не соответствует шаблону - +X-(XXX)-XXX-XX-XX' }
+    ],
+    repeatPassword: [
+      { type: 'required', message: 'Данное поле обязательно к заполнению.' },
+      { type: 'mismatch', message: 'Введенные пароли не совпадают.' }
     ]
   };
   constructor() { }
@@ -44,13 +49,17 @@ export class RegistrationComponent implements OnInit {
       ),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
-        Validators.pattern(/^[A-z0-9]*$/)
+        Validators.minLength(6),
+        Validators.maxLength(15),
+        this.specialSymbolValidator
       ]),
+      repeatPassword: new FormControl('', Validators.required),
       phones: new FormArray([]),
       inputState: new FormControl(''),
       remember: new FormControl(false)
-    });
+    },
+      this.passwordValidator,
+      );
   }
 
   send() {
@@ -70,5 +79,14 @@ export class RegistrationComponent implements OnInit {
       type: new FormControl('')
     });
     this.phones().push(phone);
+  }
+
+  passwordValidator(groupF: FormGroup) {
+    return groupF.get('password').value === groupF.get('repeatPassword').value ? null : {mismatch : true};
+  }
+
+  specialSymbolValidator(controlF: FormControl) {
+    return (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{6,}/)
+      .test(controlF.value) ? null : {nonSpec: true};
   }
 }
