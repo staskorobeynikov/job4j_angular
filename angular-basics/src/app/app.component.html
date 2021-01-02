@@ -1,38 +1,60 @@
 <h1>Hello Angular World!</h1>
 
-<!--<p>{{ title }}</p>-->
+<p>
+  {{ now | date: 'long' | uppercase }}
+</p>
 
-<!--<p><strong>{{ number - 2 }}</strong></p>-->
+<!--<ul>-->
+<!--  <li *ngFor="let number of arr; let idx = index">-->
+<!--    {{idx + 1}} <strong>{{number}}</strong>-->
+<!--  </li>-->
+<!--</ul>-->
 
-<!--<p><strong>{{ arr }}</strong></p>-->
 
-<!--<p><strong>{{ obj.b.c }}</strong></p>-->
+<!--<ul style="list-style: none">-->
+<!--  <li *ngFor="let post of objects">-->
+<!--    <p>{{post.title}} <b>{{post.author}}</b></p>-->
+<!--    <ul>-->
+<!--      <li *ngFor="let comment of post.comments">-->
+<!--        <div>-->
+<!--          <small>{{comment.name}}</small>-->
+<!--          <p>{{comment.text}}</p>-->
+<!--        </div>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </li>-->
+<!--</ul>-->
+<!--<button (click)="toggle = !toggle">Toggle</button>-->
+<!--<button (click)="toggle = 111">Set 111</button>-->
 
-<!--<p><strong>{{ 40 + 2 }}</strong></p>-->
+<!--<div [ngSwitch]="toggle">-->
+<!--  <p *ngSwitchCase="true" class="red">Lorem ipsum.</p>-->
+<!--  <p *ngSwitchCase="false" class="blue">Lorem ipsum. Lorem ipsum.</p>-->
+<!--  <p *ngSwitchDefault>Lorem ipsum dolor sit amet.</p>-->
+<!--</div>-->
 
-<!--<p><strong>{{ 'Hello' + ' World' }}</strong></p>-->
+<!--<p *ngIf="toggle; else blueP" class="red">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, earum!</p>-->
 
-<!--<img [src]="img">-->
+<!--<ng-template #blueP>-->
+<!--  <p class="blue">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, eius.</p>-->
+<!--</ng-template>-->
 
-<!--<button (click)="onClick()">Click me!!!</button>-->
+<!--<div [ngStyle]="{-->
+<!--  width: '200px',-->
+<!--  height: '200px',-->
+<!--  borderRadius: '5px',-->
+<!--  border: '1px solid #ccc',-->
+<!--  background: backgroundToggle ? 'red' : 'blue'-->
+<!--}">-->
 
-<!--<input-->
-<!--  type="text"-->
-<!--  (keyup.enter)="onInput($event)"-->
-<!--  (blur)="onBlur(myInput.value)"-->
-<!--  #myInput-->
-<!--&gt;-->
-<!--<p><strong>{{inputValue}}</strong></p>-->
+<!--</div>-->
 
-<!--<hr>-->
+<!--<p [ngClass]="{-->
+<!--  red: backgroundToggle,-->
+<!--  blue: !backgroundToggle-->
+<!--}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, quam!</p>-->
 
-<!--<app-post></app-post>-->
-<!--&lt;!&ndash;<app-post></app-post>&ndash;&gt;-->
-
-<!--<hr>-->
-
-<!--<app-post4></app-post4>-->
-
-<input type="text" [(ngModel)]="title">
-
-<p>{{ title }}</p>
+<!--<p-->
+<!--  [class.blue]="!backgroundToggle"-->
+<!--  [class.red]="backgroundToggle"-->
+<!--&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet autem cupiditate maxime minima neque quas temporibus tenetur!</p>-->
