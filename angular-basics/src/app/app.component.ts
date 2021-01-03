@@ -1,26 +1,39 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core'
+
+export interface Post {
+  title: string
+  text: string
+  id?: number
+}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  toggle: any = false;
+export class AppComponent implements OnInit {
+  posts: Post[] = [
+    {title: 'Хочу выучить Angular компоненты', text: 'Я все еще учу компоненты', id: 1},
+    {title: 'Следующий блок', text: 'Будет про директивы и про пайпы', id: 2}
+  ]
 
-  arr = [1, 1, 2, 3, 5, 8, 13];
+  ngOnInit(): void {
+    // setTimeout(() => {
+    //   console.log('Timeout')
+    //   this.posts[0] = {
+    //     title: 'Changed!!',
+    //     text: 'Changed222',
+    //     id: 33
+    //   }
+    // }, 5000)
+  }
 
-  objects = [
-    {title: 'Post 1', author: 'Stas', comments: [
-        {name: 'Max', text: 'lorem 1'},
-        {name: 'Max', text: 'lorem 2'},
-        {name: 'Max', text: 'lorem 3'}
-      ]},
-    {title: 'Post 2', author: 'Stas 2', comments: [
-        {name: 'Max 2', text: 'lorem 1'},
-        {name: 'Max 2', text: 'lorem 2'},
-        {name: 'Max 2', text: 'lorem 3'}
-      ]}
-  ];
-  now: Date = new Date();
+  updatePosts(post: Post): void {
+    this.posts.unshift(post)
+  }
+
+  removePost(id: number): void {
+    console.log('Id to remove', id)
+    this.posts = this.posts.filter(p => p.id !== id)
+  }
 }
