@@ -67,7 +67,7 @@
     "quotemark": [
       false,
       "single"
-     ],
+    ],
     "semicolon": {
       "options": [
         "always"
