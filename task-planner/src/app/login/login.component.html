@@ -41,7 +41,7 @@
                  minlength="4"
                  maxlength="15"
                  #password="ngModel"
-                 [style]="password.invalid"
+                 [ngClass]="{'ng-invalid': password.invalid}"
                  type="password"
                  class="form-control"
                  id="password">
