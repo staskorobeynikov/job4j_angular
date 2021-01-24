@@ -89,4 +89,8 @@ export class RegistrationComponent implements OnInit {
     return (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{6,}/)
       .test(controlF.value) ? null : {nonSpec: true};
   }
+
+  deletePhone(i: number) {
+    this.phones().removeAt(i);
+  }
 }

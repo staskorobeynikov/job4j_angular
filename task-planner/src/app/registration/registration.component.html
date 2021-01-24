@@ -65,11 +65,11 @@
                     [ngStyle]="{color: 'red'}">{{ error.message }}</span>
             </div>
           </div>
-          <ng-container formGroupName="phones">
+          <ng-container formArrayName="phones">
             <ng-container *ngFor="let phones of phones().controls; let i = index"
                           [formGroupName]="i">
               <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-5">
                   <label for="phone">Phone</label>
                   <input name="phone"
                     formControlName="phone"
@@ -83,7 +83,7 @@
                           [ngStyle]="{color: 'red'}">{{ error.message }}</span>
                   </div>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                   <label for="inputState">Type</label>
                   <select id="inputState" class="form-control" formControlName="type">
                     <option selected>Рабочий</option>
@@ -91,24 +91,35 @@
                     <option>Домашний</option>
                   </select>
                 </div>
+                <div class="form-group col-md-2">
+                  <label for="inputState">Action</label>
+                  <button
+                    type="button"
+                    class="form-control btn btn-danger"
+                    (click)="deletePhone(i)"
+                  >Удалить</button>
+                </div>
               </div>
             </ng-container>
           </ng-container>
           <div class="form-group">
             <button type="button"
                     (click)="addNewPhone()"
-                    class="btn btn-info">Добавить телефон</button>
+                    class="btn btn-info"
+            >Добавить телефон</button>
           </div>
           <div class="form-group">
             <label class="form-check-label">
               <input
                 name="remember"
                 formControlName="remember"
-                type="checkbox"> Получать уведомления</label>
+                type="checkbox"
+              >Получать уведомления</label>
           </div>
           <button type="submit"
                   [disabled]="registrationForm.invalid"
-                  class="btn btn-primary mr-2">
+                  class="btn btn-primary mr-2"
+          >
             Зарегистрироваться</button>
         </form>
       </div>
