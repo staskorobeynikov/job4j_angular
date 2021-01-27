@@ -12,6 +12,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {LoginModule} from './login/login.module';
 import { RegistrationComponent } from './registration/registration.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -27,13 +28,15 @@ import { RegistrationComponent } from './registration/registration.component';
     FormsModule,
     BrowserModule,
     CommonModule,
-    LoginModule
+    LoginModule,
+    HttpClientModule
   ],
   providers: [
     HelperService,
     TaskContainerService
   ],
   exports: [
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })

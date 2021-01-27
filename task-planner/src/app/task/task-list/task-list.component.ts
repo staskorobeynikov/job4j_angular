@@ -3,14 +3,13 @@ import {Task} from './task.model';
 import {TaskContainerService} from '../../shared/services/task-container.service';
 import {TaskStorageService} from '../../shared/services/task-storage.service';
 
-
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  tasks: Task[];
+  tasks: Task[] = [];
   allTasks = true;
   isEdit = false;
 
@@ -20,9 +19,9 @@ export class TaskListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.tasks = this.taskStore.getAllTasks();
-    console.log('onInit');
+    this.taskStore.getAllTasks().subscribe(data => this.tasks = data);
   }
+
   filterTasks($event) {
     this.allTasks = !this.allTasks;
     if ($event.target.checked) {
@@ -31,16 +30,18 @@ export class TaskListComponent implements OnInit {
       console.log('false');
     }
   }
+
   getTaskListsSize() {
     return this.tasks.length;
   }
-  deleteTaskFromArray(name: string) {
-    const index = this.tasks.findIndex(t => t.name === name);
-    if (index > -1) {
-      this.tasks.splice(index, 1);
-      console.log('Задача ' + name + ' удалена');
-    }
+
+  deleteTaskFromArray($event) {
+    this.taskStore.remove($event).subscribe(() => {
+      this.tasks.filter(t => t.id !== $event);
+      console.log('Задача c id: ' + $event + ' удалена');
+    });
   }
+
   getTasksAmountByStatus(status: string) {
     return this.tasks.filter(task => task.status === status).length;
   }

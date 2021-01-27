@@ -21,10 +21,11 @@ export class TaskAddComponent implements OnInit {
   ngOnInit(): void {
   }
   addNewTask() {
-    const maxId = this.taskStore.getMaxId();
     this.taskStore.addTask(new Task(
-      this.name, this.category, this.dateStart, this.dateEnd, this.status, maxId + 1
-    ));
+      this.name, this.category, this.dateStart, this.dateEnd, this.status
+    )).subscribe((task) => {
+      console.log('Задача с именем: ' + task.name + ' была создана');
+    });
     this.name = '';
     this.category = '';
     this.dateStart = '';

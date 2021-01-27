@@ -1,39 +1,45 @@
-<div class="card-body">
-  <div class="form-group row">
-    <label for="task_name" class="col-sm-2 col-form-label" style="font-weight: bold">Название задачи: </label>
-    <div class="col-sm-5">
-      <input appInputStyle type="text" class="form-control" id="task_name" title="name" [(ngModel)]="editedTask.name">
+<div *ngIf="editedTask != undefined; else loading">
+  <div class="card-body">
+    <div class="form-group row">
+      <label for="task_name" class="col-sm-2 col-form-label" style="font-weight: bold">Название задачи: </label>
+      <div class="col-sm-5">
+        <input appInputStyle type="text" class="form-control" id="task_name" title="name" [(ngModel)]="editedTask.name">
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="task_category" class="col-sm-2 col-form-label" style="font-weight: bold">Категория задачи: </label>
-    <div class="col-sm-5">
-      <input appInputStyle type="text" class="form-control" id="task_category" [(ngModel)]="editedTask.category">
+    <div class="form-group row">
+      <label for="task_category" class="col-sm-2 col-form-label" style="font-weight: bold">Категория задачи: </label>
+      <div class="col-sm-5">
+        <input appInputStyle type="text" class="form-control" id="task_category" [(ngModel)]="editedTask.category">
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="task_dateStart" class="col-sm-2 col-form-label" style="font-weight: bold">Дата начала задачи: </label>
-    <div class="col-sm-5">
-      <input appValidDate appInputStyle type="text" class="form-control" id="task_dateStart" [(ngModel)]="editedTask.dateStart">
+    <div class="form-group row">
+      <label for="task_dateStart" class="col-sm-2 col-form-label" style="font-weight: bold">Дата начала задачи: </label>
+      <div class="col-sm-5">
+        <input appValidDate appInputStyle type="text" class="form-control" id="task_dateStart" [(ngModel)]="editedTask.dateStart">
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="task_dateEnd" class="col-sm-2 col-form-label" style="font-weight: bold">Дата окончания задачи: </label>
-    <div class="col-sm-5">
-      <input appValidDate appInputStyle type="text" class="form-control" id="task_dateEnd" [(ngModel)]="editedTask.dateEnd">
+    <div class="form-group row">
+      <label for="task_dateEnd" class="col-sm-2 col-form-label" style="font-weight: bold">Дата окончания задачи: </label>
+      <div class="col-sm-5">
+        <input appValidDate appInputStyle type="text" class="form-control" id="task_dateEnd" [(ngModel)]="editedTask.dateEnd">
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="task_status" class="col-sm-2 col-form-label" style="font-weight: bold">Статус задачи: </label>
-    <div class="col-sm-5">
-      <select class="form-control" id="task_status" [(ngModel)]="editedTask.status">
-        <option selected>{{editedTask.status}}</option>
-        <option value="Запланировано">Запланировано</option>
-        <option value="Просрочено">Просрочено</option>
-        <option value="Выполнено">Выполнено</option>
-      </select>
+    <div class="form-group row">
+      <label for="task_status" class="col-sm-2 col-form-label" style="font-weight: bold">Статус задачи: </label>
+      <div class="col-sm-5">
+        <select class="form-control" id="task_status" [(ngModel)]="editedTask.status">
+          <option selected>{{editedTask.status}}</option>
+          <option value="Запланировано">Запланировано</option>
+          <option value="Просрочено">Просрочено</option>
+          <option value="Выполнено">Выполнено</option>
+        </select>
+      </div>
     </div>
+    <button class="btn btn-success" (click)="editTask()">Изменить задачу</button>
+    <button class="btn btn-success" (click)="cancel()">Отменить</button>
   </div>
-  <button class="btn btn-success" (click)="editTask()">Изменить задачу</button>
-  <button class="btn btn-success" (click)="cancel()">Отменить</button>
 </div>
+
+<ng-template #loading>
+  <p class="text-center">Идет загрузка...</p>
+</ng-template>

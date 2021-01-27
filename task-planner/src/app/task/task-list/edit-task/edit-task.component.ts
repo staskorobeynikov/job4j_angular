@@ -21,29 +21,23 @@ export class EditTaskComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      const byId = this.taskStore.getById(+params.id);
-      if (byId.status === 'Выполнено') {
-        alert('Нельзя изменить выполненную задачу');
-        setTimeout(() => this.cancel());
-      } else {
-        this.editedTask = new Task(
-          byId.name,
-          byId.category,
-          byId.dateStart,
-          byId.dateEnd,
-          byId.status,
-          byId.id
-        );
-      }
+      this.taskStore.getById(+params.id).subscribe((data: Task) => {
+        if (data.status === 'Выполнено') {
+          alert('Нельзя изменить выполненную задачу');
+          setTimeout(() => this.cancel());
+        } else {
+          this.editedTask = data;
+        }
+      });
     });
   }
+
   editTask() {
-    this.taskContainerService.dataUpdate$.subscribe((data: Task) => {
-      this.taskStore.updateTask(data.id, data);
+    this.taskStore.updateTask(this.editedTask.id, this.editedTask).subscribe(() => {
       this.location.back();
     });
-    this.taskContainerService.update(this.editedTask);
   }
+
   cancel() {
     this.location.back();
   }
